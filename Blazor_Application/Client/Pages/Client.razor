@@ -1,0 +1,47 @@
+﻿@page "/client"
+@using Blazor_Application.Shared
+@inject HttpClient Http
+@inject IClientService ClientService
+
+<PageTitle>List of clients</PageTitle>
+
+<h1>List of clients</h1>
+
+
+@if (ClientService.Clients == null)
+{
+        <p><em>Loading...</em></p>
+}
+else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>VAT ID number</th>
+                    <th>Current Date</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var client in ClientService.Clients)
+            {
+                        <tr>
+                            <td>@client.Name</td>
+                            <td>@client.Surname</td>
+                            <td>@client.VAT_ID_number</td>
+                            <td>@client.Current_Date.ToShortDateString()</td>
+                            <td>@client.Address</td>
+
+                        </tr>
+            }
+            </tbody>
+        </table>
+}
+@code{
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+    }
+}
