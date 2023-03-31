@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Blazor_Application.Server.Controllers
 {
@@ -18,23 +19,26 @@ namespace Blazor_Application.Server.Controllers
 
         };
 
-        // Get list of clients
-        [HttpGet]
+        //Get list of clientsKC
+        [HttpGet("all")]
         public async Task<ActionResult<List<client>>> GetClients()
         {
             return Ok(clients);
         }
 
-        // Get one client
-        [HttpGet("VAT_ID_number")]
-        public async Task<ActionResult<client>> GetClient(int VAT_ID_number)
+        //Get one client
+       [HttpGet("byTax")]
+        public async Task<ActionResult<client>> GetClient(int id)
         {
-            var client = clients.FirstOrDefault(cl => cl.VAT_ID_number == VAT_ID_number);
+            var client = clients.FirstOrDefault(cl => cl.VAT_ID_number == id);
             if (client == null)
             {
-                return NotFound("Client with this VAT ID number doesn't exist");
-            }
-            return Ok(clients);
+                return NotFound("client with this vat id number doesn't exist");
+            } 
+            return Ok(client);
+
         }
+
+
     }
 }

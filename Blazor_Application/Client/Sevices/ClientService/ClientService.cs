@@ -16,7 +16,7 @@ namespace Blazor_Application.Client.Sevices.ClientService
 
         public async Task GetClients()
         {
-            var outcome = await _http.GetFromJsonAsync<List<client>>("api/client");
+            var outcome = await _http.GetFromJsonAsync<List<client>>("api/client/all");
 
             if (outcome != null)
             {
@@ -26,7 +26,7 @@ namespace Blazor_Application.Client.Sevices.ClientService
 
         public async Task<client> GetSingleClient(int VAT_ID_number)
         {
-            var outcome = await _http.GetFromJsonAsync<client>($"api/client/{VAT_ID_number}");
+            var outcome = await _http.GetFromJsonAsync<client>($"api/client/bytax?id={VAT_ID_number}");
 
             if (outcome != null)
             {
