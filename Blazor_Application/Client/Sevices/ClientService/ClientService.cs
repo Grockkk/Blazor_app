@@ -24,9 +24,17 @@ namespace Blazor_Application.Client.Sevices.ClientService
             }
         }
 
-        public Task GetSingleClient(int VAT_ID_number)
+        public async Task<client> GetSingleClient(int VAT_ID_number)
         {
-            throw new NotImplementedException();
+            var outcome = await _http.GetFromJsonAsync<client>($"api/client/{VAT_ID_number}");
+
+            if (outcome != null)
+            {
+                return outcome;
+            }
+            throw new Exception("Client not found");
         }
+
+
     }
 }

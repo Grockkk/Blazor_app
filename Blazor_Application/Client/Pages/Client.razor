@@ -2,6 +2,9 @@
 @using Blazor_Application.Shared
 @inject HttpClient Http
 @inject IClientService ClientService
+@inject NavigationManager NavigationManager
+
+
 
 <PageTitle>List of clients</PageTitle>
 
@@ -33,6 +36,9 @@ else
                             <td>@client.VAT_ID_number</td>
                             <td>@client.Current_Date.ToShortDateString()</td>
                             <td>@client.Address</td>
+                            <td>
+                                <Button class = "btn btn-primary" @onclick="(() => ShowClient(client.VAT_ID_number))"><i class="oi oi-code"></i></Button>
+                            </td>
 
                         </tr>
             }
@@ -40,8 +46,13 @@ else
         </table>
 }
 @code{
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
-        base.OnAfterRender(firstRender);
+        await ClientService.GetClients();
     }
+    void ShowClient(int VAT_ID_number)
+    {
+        NavigationManager.NavigateTo($"SingleClient/{VAT_ID_number}");
+    }
+
 }

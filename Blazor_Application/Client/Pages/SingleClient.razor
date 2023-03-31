@@ -1,0 +1,35 @@
+﻿@page "/SingleClient"
+@page "/SingleClient/{VAT_ID_number:int}"
+@using Blazor_Application.Shared
+@using Blazor_Application.Client.Sevices.ClientService
+@inject IClientService ClientService
+
+@if (VAT_ID_number == null)
+{
+    <h3>There are no clients here</h3>
+}
+else{
+
+    <h3>Edit @cl.VAT_ID_number</h3>
+}
+
+@code {
+    [Parameter]
+    public int? VAT_ID_number { get; set; }
+
+    client cl = new client { };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (VAT_ID_number == null)
+        {
+            //smt
+        }
+        else
+        {
+            cl = await ClientService.GetSingleClient((int)VAT_ID_number);
+        }
+    }
+
+
+}
