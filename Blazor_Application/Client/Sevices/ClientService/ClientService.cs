@@ -18,15 +18,13 @@ namespace Blazor_Application.Client.Sevices.ClientService
         public async Task CreateClient(client client)
         {
             var outcome = await _http.PostAsJsonAsync($"api/client", client);
-            var updatedList = await outcome.Content.ReadFromJsonAsync<List<client>>();
-            Clients = updatedList;
+            UpdateList(outcome);
         }
 
         public async Task DeleteClient(int VAT_ID_number)
         {
             var outcome = await _http.DeleteAsync($"api/client/byTax?id={VAT_ID_number}");
-            var updatedList = await outcome.Content.ReadFromJsonAsync<List<client>>();
-            Clients = updatedList;
+            UpdateList(outcome);
         }
 
         public async Task GetClients()
@@ -53,6 +51,10 @@ namespace Blazor_Application.Client.Sevices.ClientService
         public async Task UpdateClient(client client)
         {
             var outcome = await _http.PutAsJsonAsync($"api/client/byTax?id={client.VAT_ID_number}", client);
+            UpdateList(outcome);
+        }
+        public async Task UpdateList(HttpResponseMessage outcome)
+        {
             var updatedList = await outcome.Content.ReadFromJsonAsync<List<client>>();
             Clients = updatedList;
         }
