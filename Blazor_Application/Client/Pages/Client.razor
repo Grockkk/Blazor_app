@@ -44,6 +44,7 @@ else
             }
             </tbody>
         </table>
+        <button class="btn btn-primary" @onclick="CreateClient">Create new client</button>
 }
 @code{
     protected override async Task OnInitializedAsync()
@@ -53,6 +54,10 @@ else
     void ShowClient(int VAT_ID_number)
     {
         NavigationManager.NavigateTo($"SingleClient/{VAT_ID_number}");
+    }
+    void CreateClient()
+    {
+        NavigationManager.NavigateTo("/SingleClient");
     }
 
 }

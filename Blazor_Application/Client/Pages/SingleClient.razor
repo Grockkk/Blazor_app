@@ -27,7 +27,8 @@ else{
         <InputText id="name" @bind-Value='cl.Address' class="form-control"></InputText>
     </div><br />
 
-    <button type="submit" class="btn btn-primary">Submit edits</button>
+    <button type="submit" class="btn btn-primary" @onclick="DeleteClient">Delete client</button>
+    <button type="button" class="btn btn-primary" @onclick="handleEdit">  Submit edits</button>
 </EditForm>
 
 
@@ -40,19 +41,31 @@ else{
 
     protected override async Task OnParametersSetAsync()
     {
-        if (VAT_ID_number == null)
+        if (VAT_ID_number != null)
         {
-            //smt
+            cl = await ClientService.GetSingleClient((int)VAT_ID_number);
         }
         else
         {
-            cl = await ClientService.GetSingleClient((int)VAT_ID_number);
+        //
         }
     }
 
     async Task handleEdit()
     {
-        
+        if (VAT_ID_number ==null)
+        {
+            await ClientService.CreateClient(cl);
+        }
+        else
+        {
+            await ClientService.UpdateClient(cl);
+        }
+    }
+
+    async Task DeleteClient()
+    {
+        await ClientService.DeleteClient(cl.VAT_ID_number);
     }
 
 
