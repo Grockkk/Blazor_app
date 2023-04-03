@@ -8,5 +8,8 @@ namespace Blazor_Application.Client.Sevices.ClientService
         Task GetClients();
 
         Task<client> GetSingleClient(int VAT_ID_number);
+        Task DeleteClient(int VAT_ID_number);
+        Task CreateClient(client client);
+        Task UpdateClient(client client);
     }
 }

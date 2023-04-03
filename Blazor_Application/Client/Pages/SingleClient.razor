@@ -10,8 +10,27 @@
 }
 else{
 
-    <h3>Edit @cl.Name</h3>
+    <h3>Edit @cl.Name with VAT number: @cl.VAT_ID_number </h3>
 }
+
+<EditForm Model="cl" OnSubmit="handleEdit">
+    <div>
+        <label for="name">Change the Name</label>
+        <InputText id="name" @bind-Value='cl.Name' class="form-control"></InputText>
+    </div><br />
+    <div>
+        <label for="name">Change the Surname</label>
+        <InputText id="name" @bind-Value='cl.Surname' class="form-control"></InputText>
+    </div><br />
+    <div >
+        <label for="name">Change the Address</label>
+        <InputText id="name" @bind-Value='cl.Address' class="form-control"></InputText>
+    </div><br />
+
+    <button type="submit" class="btn btn-primary">Submit edits</button>
+</EditForm>
+
+
 
 @code {
     [Parameter]
@@ -29,6 +48,11 @@ else{
         {
             cl = await ClientService.GetSingleClient((int)VAT_ID_number);
         }
+    }
+
+    async Task handleEdit()
+    {
+        
     }
 
 
