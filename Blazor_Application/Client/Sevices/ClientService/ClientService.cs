@@ -26,7 +26,7 @@ namespace Blazor_Application.Client.Sevices.ClientService
 
         public async Task DeleteClient(int VAT_ID_number)
         {
-            var outcome = await _http.DeleteAsync($"api/client/byTax?id={VAT_ID_number}");
+            var outcome = await _http.DeleteAsync($"api/client/{VAT_ID_number}");
             await UpdateList(outcome);
         }
 
@@ -42,7 +42,7 @@ namespace Blazor_Application.Client.Sevices.ClientService
 
         public async Task<client> GetSingleClient(int VAT_ID_number)
         {
-            var outcome = await _http.GetFromJsonAsync<client>($"api/client/byTax?id={VAT_ID_number}");
+            var outcome = await _http.GetFromJsonAsync<client>($"api/client/{VAT_ID_number}");
 
             if (outcome != null)
             {

@@ -18,7 +18,6 @@ namespace Blazor_Application.Server.Controllers
                 Current_Date = DateTime.Today ,
                 VAT_ID_number = ID_number++
             }
-
         };
 
         //Get list of clientsKC
@@ -29,7 +28,7 @@ namespace Blazor_Application.Server.Controllers
         }
 
         //Get one client
-       [HttpGet("byTax")]
+       [HttpGet("{id}")]
         public async Task<ActionResult<client>> GetClient(int id)
         {
             var client = clients.FirstOrDefault(cl => cl.VAT_ID_number == id);
@@ -60,6 +59,13 @@ namespace Blazor_Application.Server.Controllers
             client.Address = cl.Address;
             client.Name = cl.Name;
             return Ok(client);
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<client>>> DeleteClient(int id)
+        {
+            var client = clients.FirstOrDefault(cl => cl.VAT_ID_number == id);
+            clients.Remove(client);
+            return Ok(clients);
         }
 
     }
