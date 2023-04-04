@@ -20,7 +20,7 @@ namespace Blazor_Application.Server.Controllers
             }
         };
 
-        //Get list of clientsKC
+        //Get list of clients
         [HttpGet("all")]
         public async Task<ActionResult<List<client>>> GetClients()
         {

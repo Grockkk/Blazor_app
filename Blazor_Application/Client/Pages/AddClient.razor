@@ -1,34 +1,28 @@
-﻿@page "/SingleClient"
-@page "/SingleClient/{VAT_ID_number:int}"
+﻿@page "/AddClient"
+@page "/AddClient/{VAT_ID_number:int}"
 @using Blazor_Application.Shared
 @using Blazor_Application.Client.Sevices.ClientService
 @inject IClientService ClientService
 
-@if (VAT_ID_number == null)
-{
-    <h3>There are no clients here</h3>
-}
-else{
 
-    <h3>Edit @cl.Name with VAT number: @cl.VAT_ID_number </h3>
-}
+<h3>Create new client </h3>
 
+<p>date will be @DateTime.Today.ToShortDateString() and VAT ID number will be automatically assigned</p>
 <EditForm Model="cl" OnSubmit="handleEdit">
     <div>
-        <label for="name">Change the Name</label>
+        <label for="name">Enter Name</label>
         <InputText id="name" @bind-Value='cl.Name' class="form-control"></InputText>
     </div><br />
     <div>
-        <label for="name">Change the Surname</label>
+        <label for="name">Enter Surname</label>
         <InputText id="name" @bind-Value='cl.Surname' class="form-control"></InputText>
     </div><br />
-    <div >
-        <label for="name">Change the Address</label>
+    <div>
+        <label for="name">Enter Address</label>
         <InputText id="name" @bind-Value='cl.Address' class="form-control"></InputText>
     </div><br />
 
-    <button type="submit" class="btn btn-primary" @onclick="DeleteClient">Delete client</button>
-    <button type="button" class="btn btn-primary" @onclick="handleEdit">  Submit edits</button>
+    <button type="button" class="btn btn-primary" @onclick="handleEdit">Submit client</button>
 </EditForm>
 
 
@@ -47,13 +41,13 @@ else{
         }
         else
         {
-            
+            //
         }
     }
 
     async Task handleEdit()
     {
-        if (VAT_ID_number ==null)
+        if (VAT_ID_number == null)
         {
             await ClientService.CreateClient(cl);
         }
@@ -63,10 +57,6 @@ else{
         }
     }
 
-    async Task DeleteClient()
-    {
-        await ClientService.DeleteClient(cl.VAT_ID_number);
-    }
 
 
 }

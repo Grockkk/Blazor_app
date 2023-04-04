@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Repositories/Blazor_app/Blazor_Application/Client/Pages/AddClient.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQ2xpZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Repositories/Blazor_app/Blazor_Application/Client/Pages/Client.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
