@@ -8,13 +8,15 @@ namespace Blazor_Application.Server.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        public static List<client> clients = new List<client> { 
-            new client{ 
-                Name = "Jan" , 
-                Surname = "Kowalski" , 
-                Address = "Kraków ulica malinowa 5" , 
-                Current_Date = DateTime.Today , 
-                VAT_ID_number = 1
+        static int ID_number =0;
+
+        public static List<client> clients = new List<client> {
+            new client{
+                Name = "Jan" ,
+                Surname = "Kowalski" ,
+                Address = "Kraków ulica malinowa 5" ,
+                Current_Date = DateTime.Today ,
+                VAT_ID_number = ID_number++
             }
 
         };
@@ -38,7 +40,27 @@ namespace Blazor_Application.Server.Controllers
             return Ok(client);
 
         }
-
+        [HttpPost]
+        public async Task<ActionResult<client>> CreateClient(client cl)
+        {
+            cl.Current_Date = DateTime.Today;
+            cl.VAT_ID_number = ID_number++;
+            clients.Add(cl);
+            return Ok(clients);
+        }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<client>>> UpdateClient(client cl, int id)
+        {
+            var client = clients.FirstOrDefault(cl => cl.VAT_ID_number == id);
+            if (client == null) 
+            { 
+                return NotFound("client with this vat id number doesn't exist"); 
+            }
+            client.Surname = cl.Surname;
+            client.Address = cl.Address;
+            client.Name = cl.Name;
+            return Ok(client);
+        }
 
     }
 }
