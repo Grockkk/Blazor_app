@@ -13,4 +13,4 @@ Follow these steps to run this application:
 - Press **F5** or press the start button
 
 ## Use
-To propearly use this app you have to click on **Clients** tab. This tab contains a list of clients. To create new client you have to press **Create new client** button at the bottom of the list. To edit or delete client you have to press edit button on the left side of each client.
+To propearly use this app you have to click on **Clients** tab. This tab contains a list of clients. To create new client you have to press **Create new client** button at the bottom of the list. To edit or delete client you have to press edit button on the right side of each client.
